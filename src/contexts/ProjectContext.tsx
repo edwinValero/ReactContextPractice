@@ -4,6 +4,7 @@ import React, {
   useContext,
   type ReactNode,
   useEffect,
+  useState,
 } from 'react';
 import type { Project, ProjectAction } from '../types/ProjectType';
 import projectReducer from '../reducers/ProjectReducer';
@@ -14,6 +15,8 @@ const initialProjects: Project[] = [];
 const ProjectContext = createContext<
   | {
       state: Project[];
+      loading: boolean;
+      error: null | string;
       dispatch: React.Dispatch<ProjectAction>;
     }
   | undefined
@@ -21,6 +24,8 @@ const ProjectContext = createContext<
 
 export function ProjectProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(projectReducer, initialProjects);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchProject() {
@@ -29,12 +34,15 @@ export function ProjectProvider({ children }: { children: ReactNode }) {
         dispatch({ type: 'LOAD_PROJECTS', payload: projects });
       } catch (e) {
         console.error(e);
+        setError('Error loading projects');
+      } finally {
+        setLoading(false);
       }
     }
     fetchProject();
   }, []);
   return (
-    <ProjectContext.Provider value={{ state, dispatch }}>
+    <ProjectContext.Provider value={{ state, dispatch, loading, error }}>
       {children}
     </ProjectContext.Provider>
   );

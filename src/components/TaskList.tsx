@@ -13,7 +13,7 @@ function TaskList({ tasks, projectId }: Props) {
       {tasks.map((task) => (
         <li
           key={task.id}
-          className='p-4 mt-2 bg-gray-100 text-blue-900 rounded-lg hover:bg-gray-300 transition '
+          className='p-4 mt-2 bg-gray-100 text-blue-900 rounded-lg transition '
         >
           <TaskCard task={task} projectId={projectId}></TaskCard>
         </li>
