@@ -1,54 +1,83 @@
-# React + TypeScript + Vite
+# 🧠 React Context Practice – Project & Task Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple yet well-structured React application built with **Vite + TypeScript**, created as a personal project to practice and demonstrate state management using **React Context API**. The goal is to manage and display a list of projects, each containing its own list of tasks.
 
-Currently, two official plugins are available:
+## 📌 About the Project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This application simulates a lightweight project management tool, where users can view a collection of projects and their associated tasks. Each project has a name and an ID, while each task contains a name and a status (e.g., completed or pending).
 
-## Expanding the ESLint configuration
+The project was developed following modern frontend best practices, including clean code structure, separation of concerns, component reusability, and centralized state management with Context API.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠 Tech Stack
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **React**
+- **Vite**
+- **TypeScript**
+- **Tailwind CSS**
+- **React Context API** for global state
+- **Jest + React Testing Library** for unit and integration tests
+
+## 🧪 Testing
+
+The application includes unit and integration tests to ensure stability and prevent regressions. Tests cover the core logic of the context, components, and interactions between projects and tasks. This helps maintain high code quality and supports future scalability.
+
+## 📁 Data Structure
+
+```ts
+// Project
+{
+  id: string;
+  name: string;
+  tasks: Task[];
+}
+
+// Task
+{
+  name: string;
+  status: 'pending' | 'completed';
+}
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## ✨ Highlights
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Context-based state management without external libraries like Redux
+- Modular and maintainable codebase
+- Styled with Tailwind for responsive, clean UI
+- Fully typed with TypeScript for safety and clarity
+- Basic task status management and project hierarchy display
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 🤓 Personal Motivation
+
+This project was part of my ongoing learning journey as a software developer focused on building clean and scalable frontend applications. It helped me reinforce concepts like context, component composition, and project organization in React.
+
+# Clone the repository
+
+`git clone https://github.com/edwinValero/ReactContextPractice.git`
+
+# Navigate into the project directory
+
+`cd ReactContextPractice`
+
+# Install dependencies
+
+`npm install`
+
+# Start the development server
+
+`npm run dev`
+
+## 🧱 Backend/API Requirements
+
+This project depends on a separate backend service that serves the project and task data.
+
+To get the application running properly:
+
+Clone and run the backend project from:
+👉 https://github.com/edwinValero/YourBackendRepo
+
+Follow the setup instructions in that repository to start the API server (usually with npm install and npm run dev or similar).
+
+Make sure the API is running on the expected port (e.g., http://localhost:3000) or/and setup a env.local with `VITE_API_URL` variable.
+If needed, you can configure the API base URL in this project via an environment variable or configuration file.
+
+Once the backend is running, you can start the frontend with:

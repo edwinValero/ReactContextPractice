@@ -53,8 +53,16 @@ function NewTask({ projectId }: Props) {
           create a new task
         </p>
       )}
-      {loading && <span className='text-sm text-blue-500'>Saving...</span>}
-      {error && <span className='text-sm text-red-500'>{error}</span>}
+      {loading && (
+        <span className='bg-gray-100 text-sm p-2 text-blue-700 rounded-md'>
+          Saving...
+        </span>
+      )}
+      {error && (
+        <span className='bg-red-100 text-sm text-red-700 p-2 rounded-md'>
+          {error}
+        </span>
+      )}
     </div>
   );
 }

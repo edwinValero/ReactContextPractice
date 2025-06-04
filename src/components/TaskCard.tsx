@@ -1,6 +1,7 @@
 import { Trash2Icon } from 'lucide-react';
 import type { Task } from '../types/ProjectType';
 import { useProjectsContext } from '../contexts/ProjectContext';
+import { deleteTask } from '../services/projectAPI';
 
 interface Props {
   task: Task;
@@ -12,7 +13,12 @@ function TaskCard({ task, projectId }: Props) {
 
   const { dispatch } = useProjectsContext();
   const deleteHandler = async () => {
-    dispatch({ type: 'DELETE_TASK', payload: { id, projectId } });
+    try {
+      await deleteTask(id, projectId);
+      dispatch({ type: 'DELETE_TASK', payload: { id, projectId } });
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <div className='w-full flex flex-col gap-2'>
