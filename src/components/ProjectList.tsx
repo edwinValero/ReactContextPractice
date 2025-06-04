@@ -1,9 +1,11 @@
-import { useProjectsContext } from '../contexts/ProjectContext';
+import { useProjectsContext } from '../hooks/useProjectContext';
+import { useGetProject } from '../hooks/useGetProject';
 import NewProject from './NewProject';
 import ProjectCard from './ProjectCard';
 
 function ProjectList() {
-  const { state, loading, error } = useProjectsContext();
+  const { state } = useProjectsContext();
+  const { loading, error } = useGetProject();
 
   if (loading)
     return (
@@ -15,7 +17,7 @@ function ProjectList() {
     );
   return (
     <ul className='w-full'>
-      {state.map((project) => (
+      {state.projects.map((project) => (
         <li
           key={project.id}
           className='p-4 m-4 bg-blue-200 text-blue-900 rounded-lg hover:bg-blue-300 transition'

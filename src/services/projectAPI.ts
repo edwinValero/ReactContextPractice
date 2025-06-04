@@ -50,7 +50,7 @@ export async function deleteProject(id: string) {
   if (!res.ok) throw new Error('Error deleting project');
 }
 export async function deleteTask(id: string, projectId: string) {
-  const request = new Request(`${projectsURL}/${projectId}/tasks?${id}`, {
+  const request = new Request(`${projectsURL}/${projectId}/tasks/${id}`, {
     method: 'DELETE',
   });
   const res = await fetch(request);

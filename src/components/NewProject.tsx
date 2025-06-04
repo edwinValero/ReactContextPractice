@@ -1,28 +1,8 @@
-import { useState } from 'react';
-import { useProjectsContext } from '../contexts/ProjectContext';
-import { createProject } from '../services/projectAPI';
+import { useNewProject } from '../hooks/useNewProject';
 
 function NewProject() {
-  const [value, setValue] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const { dispatch } = useProjectsContext();
-
-  const handleSave = async () => {
-    if (!value.trim()) return;
-    try {
-      setLoading(true);
-      setError('');
-      const project = await createProject(value.trim());
-      dispatch({ type: 'NEW_PROJECT', payload: project });
-      setValue('');
-    } catch (e) {
-      console.error(e);
-      setError('Error saving the project');
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { projectName, handleSave, setProjectName, loading, error } =
+    useNewProject();
 
   return (
     <div className='w-full flex flex-col gap-4 items-center'>
@@ -31,9 +11,9 @@ function NewProject() {
       <input
         type='text'
         className='w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500'
-        value={value}
+        value={projectName}
         autoFocus
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => setProjectName(e.target.value)}
         onBlur={handleSave}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {

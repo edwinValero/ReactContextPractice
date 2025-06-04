@@ -10,6 +10,10 @@ export interface Project {
   tasks: Task[];
 }
 
+export type ProjectContextType = {
+  projects: Project[];
+};
+
 export type ProjectAction =
   | { type: 'LOAD_PROJECTS'; payload: Project[] }
   | { type: 'NEW_PROJECT'; payload: Project }

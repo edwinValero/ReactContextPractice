@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useProjectsContext } from '../contexts/ProjectContext';
+import { useProjectsContext } from '../hooks/useProjectContext';
 import { createTask } from '../services/projectAPI';
 
 interface Props {

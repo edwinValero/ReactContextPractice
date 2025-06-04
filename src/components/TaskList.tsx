@@ -1,3 +1,4 @@
+import { useDeleteTask } from '../hooks/useDeleteTask';
 import type { Task } from '../types/ProjectType';
 import NewTask from './NewTask';
 import TaskCard from './TaskCard';
@@ -8,6 +9,7 @@ interface Props {
 }
 
 function TaskList({ tasks, projectId }: Props) {
+  const { deleteHandler } = useDeleteTask();
   return (
     <ul className='w-full'>
       {tasks.map((task) => (
@@ -15,7 +17,11 @@ function TaskList({ tasks, projectId }: Props) {
           key={task.id}
           className='p-4 mt-2 bg-gray-100 text-blue-900 rounded-lg transition '
         >
-          <TaskCard task={task} projectId={projectId}></TaskCard>
+          <TaskCard
+            task={task}
+            projectId={projectId}
+            deleteHandler={deleteHandler}
+          ></TaskCard>
         </li>
       ))}
       <li className='p-4 mt-2 bg-gray-100 text-blue-900 rounded-lg hover:bg-gray-300 transition '>

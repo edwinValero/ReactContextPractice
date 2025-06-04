@@ -1,5 +1,4 @@
-import { useProjectsContext } from '../contexts/ProjectContext';
-import { deleteProject } from '../services/projectAPI';
+import { useDeleteProject } from '../hooks/useDeleteProject';
 import type { Project } from '../types/ProjectType';
 import TaskList from './TaskList';
 import { Trash2Icon } from 'lucide-react';
@@ -10,16 +9,7 @@ interface ProjectCard {
 
 function ProjectCard({ project }: ProjectCard) {
   const { tasks, name, id } = project;
-  const { dispatch } = useProjectsContext();
-
-  const deleteHandler = async () => {
-    try {
-      await deleteProject(id);
-      dispatch({ type: 'DELETE_PROJECT', payload: { id } });
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const { deleteHandler } = useDeleteProject(id);
 
   return (
     <>
