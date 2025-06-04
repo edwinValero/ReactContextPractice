@@ -1,15 +1,15 @@
 import { Trash2Icon } from 'lucide-react';
 import type { Task } from '../types/ProjectType';
+import { useDeleteTask } from '../hooks/useDeleteTask';
 
 interface Props {
   task: Task;
   projectId: string;
-  deleteHandler: (id: string, projectId: string) => Promise<void>;
 }
 
-function TaskCard({ task, projectId, deleteHandler }: Props) {
+function TaskCard({ task, projectId }: Props) {
   const { name, status, id } = task;
-
+  const { deleteHandler } = useDeleteTask();
   return (
     <div className='w-full flex flex-col gap-2'>
       <div className='w-full flex justify-between items-center'>
