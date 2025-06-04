@@ -54,9 +54,21 @@ This project was part of my ongoing learning journey as a software developer foc
 
 `git clone https://github.com/edwinValero/ReactContextPractice.git`
 
-# Navigate into the project directory
+# Navigate into the client directory
 
-`cd ReactContextPractice`
+`cd ReactContextPractice/client`
+
+# Install dependencies
+
+`npm install`
+
+# Start the development server
+
+`npm run dev`
+
+# Navigate into the server directory
+
+`cd ReactContextPractice/server`
 
 # Install dependencies
 
